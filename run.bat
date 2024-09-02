@@ -22,12 +22,12 @@ echo Вы ввели неверное числоInvalid choice
 goto menu
 
 :script1
-cd blum-script
+cd script
 python freezes.py
 goto menu
 
 :script2
-cd blum-script
+cd script
 python no-freezes.py
 goto menu
 
