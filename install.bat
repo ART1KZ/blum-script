@@ -1,4 +1,4 @@
 @echo off
-cd blum-script
+cd script
 pip install -r requirements.txt
 
