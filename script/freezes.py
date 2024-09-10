@@ -8,11 +8,9 @@ from pynput.mouse import Button, Controller
 import pygetwindow as gw
 import tkinter as tk
 from tkinter import simpledialog
-
+from colorama import Fore
 mouse = Controller()
 
-click_counts = {'6': 1000}  # Установить количество игр, дефолт 1000 игр
-                #   число сверху
 
 def get_window(window):
     windows = pyautogui.getWindowsWithTitle(window)
@@ -24,22 +22,29 @@ def get_window(window):
         region_height = window.height
         return region_left, region_top, region_width, region_height
     else:
-        raise Exception(f"Окно '{window}' не найдено.")
+        raise Exception(f"{Fore.LIGHTRED_EX}Окно '{window}' не найдено.")
 
 star_templates_10s = [
     ('6', cv2.imread('6.png', cv2.IMREAD_COLOR)),
+    ('7', cv2.imread('7.png', cv2.IMREAD_COLOR)),
 ]
 
-# Удалить эти три строки, если не нужна заморозка и внизу скрипта удалить
+# Удалить эти строки, если не нужна заморозка и внизу скрипта удалить
 star_templates_5s = [
     ('4', cv2.imread('4.png', cv2.IMREAD_COLOR)),
     ('5', cv2.imread('5.png', cv2.IMREAD_COLOR)),
 ]
+########################################################
+
 
 star_templates = [
     ('1', cv2.imread('1.png', cv2.IMREAD_COLOR)),
     ('2', cv2.imread('2.png', cv2.IMREAD_COLOR)),
     ('3', cv2.imread('3.png', cv2.IMREAD_COLOR)),
+]
+
+star_templates_p = [
+    ('8', cv2.imread('8.png', cv2.IMREAD_COLOR))
 ]
 
 def click(xs, ys):
@@ -54,7 +59,7 @@ def choose_window_gui():
     windows = gw.getAllTitles()
     if not windows:
         return None
-    choice = simpledialog.askstring("Выбор окна Telegram", "Введите номер окна:\n" + "\n".join(
+    choice = simpledialog.askstring(f"{Fore.LIGHTWHITE_EX}Выбор окна Telegram", "Введите номер окна:\n" + "\n".join(
         f"{i}: {window}" for i, window in enumerate(windows)))
     if choice is None or not choice.isdigit():
         return None
@@ -91,7 +96,7 @@ def click_on_screen(position, template_width, template_height, region_left, regi
 def process_template(template_data, screenshot, scale_factor, region_left, region_top, click_counts):
     template_name, template = template_data
     if template is None:
-        print(f"Ошибка загрузки {template_name}")
+        print(f"{Fore.LIGHTRED_EX}Ошибка загрузки {template_name}")
         return template_name, None
     position = find_template_on_screen(template, screenshot, scale_factor=scale_factor)
     if position:
@@ -99,24 +104,41 @@ def process_template(template_data, screenshot, scale_factor, region_left, regio
         if template_name == '6' and click_counts['6'] > 1:
             click_on_screen(position, template_width, template_height, region_left, region_top)
             click_counts['6'] -= 1
+            
+        elif template_name == '7' and click_counts['6'] > 1:
+            center_x = telegram_window.left + telegram_window.width // 2
+            center_y = telegram_window.top + telegram_window.height // 2
+            mouse.position = (center_x, center_y)
+            time.sleep(0.3)
+            mouse.scroll(0, 2)
+            mouse.scroll(0, -200)
+            time.sleep(0.3)
+
+            position_8 = find_template_on_screen(star_templates_p[-1][1], screenshot, scale_factor=scale_factor)
+            if position_8:
+                click_on_screen(position_8, template_width, template_height, region_left, region_top)
+                click_counts['6'] -= 1
+                
 
         elif template_name != '6':
             click_on_screen(position, template_width, template_height, region_left, region_top)
         return template_name, position
     return template_name, None
 
-# Main script
 window_name = "TelegramDesktop"
 check = gw.getWindowsWithTitle(window_name)
 
 if not check:
-    print(f"\nОкно {window_name} не найдено!\nПожалуйста, выберите другое окно.")
+    print(f"{Fore.LIGHTRED_EX}\nОкно {window_name} не найдено!\nПожалуйста, выберите другое окно.")
     window_name = choose_window_gui()
 
 if not window_name or not gw.getWindowsWithTitle(window_name):
-    print("\nНе удалось найти указанное окно!\nЗапустите Telegram, после чего перезапустите бота!")
+    print(f"{Fore.LIGHTRED_EX}\nНе удалось найти указанное окно!\nЗапустите Telegram, после чего перезапустите бота!")
 else:
-    print(f"\nОкно {window_name} найдено\nПеред стартом нажмите Play в Blum\nНажмите 'S' для старта.")
+    print(f"{Fore.LIGHTBLUE_EX}\nОкно {window_name} найдено\n")
+    num = input(f"{Fore.LIGHTYELLOW_EX}Укажите количество игр, что нужно отыграть:\n")
+    click_counts = {'6': int(num)}
+    print(f"{Fore.LIGHTBLUE_EX}Нажмите 'S' для старта.")
 
 telegram_window = gw.getWindowsWithTitle(window_name)[0]
 paused = True
@@ -132,10 +154,10 @@ while True:
         paused = not paused
         last_pause_time = time.time()
         if paused:
-            print('Пауза')
+            print(f'{Fore.LIGHTBLUE_EX}Пауза')
         else:
-            print('Работаю')
-            print(f"Для паузы нажми 'S'")
+            print(f'{Fore.LIGHTBLUE_EX}Работаю')
+            print(f"{Fore.LIGHTBLUE_EX}Для паузы нажми 'S'")
         time.sleep(0.2)
 
     window_rect = (
@@ -163,7 +185,8 @@ while True:
             if current_time - last_check_time_5s >= 1:
                 futures += [executor.submit(process_template, template_data, screenshot, 0.5, telegram_window.left, telegram_window.top, click_counts) for template_data in star_templates_5s]
                 last_check_time_5s = current_time
-
+            ############################################################################################################################################
+            
             futures += [executor.submit(process_template, template_data, screenshot, 0.5, telegram_window.left, telegram_window.top, click_counts) for template_data in star_templates]
 
             for future in concurrent.futures.as_completed(futures):
@@ -171,10 +194,10 @@ while True:
 
     if click_counts['6'] == 1:
         if not end_time:
-            end_time = time.time() + 40
-            print('Достигнуто заданное количество игр')
+            end_time = time.time() + 50
+            print(f'{Fore.LIGHTWHITE_EX}Достигнуто заданное количество игр')
 
     if end_time and time.time() >= end_time:
         break
 
-print('Стоп')
+print(f'{Fore.LIGHTRED_EX}Стоп')
