@@ -20,12 +20,10 @@ goto menu
 
 
 :script1
-cd script
 python freezes.py
 goto menu
 
 :script2
-cd script
 python no-freezes.py
 goto menu
 
