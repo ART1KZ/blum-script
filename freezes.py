@@ -42,7 +42,7 @@ star_templates = [
     ('2', cv2.imread('2.png', cv2.IMREAD_COLOR)),
     ('3', cv2.imread('3.png', cv2.IMREAD_COLOR)),
     ('10', cv2.imread('10.png', cv2.IMREAD_COLOR)),
-    #('11', cv2.imread('11.png', cv2.IMREAD_COLOR)),
+    ('11', cv2.imread('11.png', cv2.IMREAD_COLOR)),
 ]
 
 star_templates_p = [
