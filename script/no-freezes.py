@@ -25,20 +25,20 @@ def get_window(window):
         raise Exception(f"{Fore.LIGHTRED_EX}Окно '{window}' не найдено.")
 
 star_templates_10s = [
-    ('6', cv2.imread('./_internal/6.png', cv2.IMREAD_COLOR)),
-    ('7', cv2.imread('./_internal/7.png', cv2.IMREAD_COLOR)),
+    ('6', cv2.imread('6.png', cv2.IMREAD_COLOR)),
+    ('7', cv2.imread('7.png', cv2.IMREAD_COLOR)),
 ]
 
 star_templates = [
-    ('1', cv2.imread('./_internal/1.png', cv2.IMREAD_COLOR)),
-    ('2', cv2.imread('./_internal/2.png', cv2.IMREAD_COLOR)),
-    ('3', cv2.imread('./_internal/3.png', cv2.IMREAD_COLOR)),
-    ('10', cv2.imread('./_internal/10.png', cv2.IMREAD_COLOR)),
-    ('11', cv2.imread('./_internal/11.png', cv2.IMREAD_COLOR)),
+    ('1', cv2.imread('1.png', cv2.IMREAD_COLOR)),
+    ('2', cv2.imread('2.png', cv2.IMREAD_COLOR)),
+    ('3', cv2.imread('3.png', cv2.IMREAD_COLOR)),
+    ('10', cv2.imread('10.png', cv2.IMREAD_COLOR)),
+    ('11', cv2.imread('11.png', cv2.IMREAD_COLOR)),
 ]
 
 star_templates_p = [
-    ('8', cv2.imread('./_internal/8.png', cv2.IMREAD_COLOR))
+    ('8', cv2.imread('8.png', cv2.IMREAD_COLOR))
 ]
 
 def click(xs, ys):
