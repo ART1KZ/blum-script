@@ -17,7 +17,8 @@ WIND = 0.2 # Сдвиг окна
 star_templates_10s = [
     ('6', cv2.imread('6.png', cv2.IMREAD_COLOR)),
     ('7', cv2.imread('7.png', cv2.IMREAD_COLOR)),
-    ('9', cv2.imread('9.png', cv2.IMREAD_COLOR))
+    ('9', cv2.imread('9.png', cv2.IMREAD_COLOR)),
+    ('16', cv2.imread('16.png', cv2.IMREAD_COLOR)),
 ]
 
 star_templates = [
@@ -35,7 +36,8 @@ star_templates = [
 ]
 
 star_templates_p = [
-    ('8', cv2.imread('8.png', cv2.IMREAD_COLOR))
+    ('8', cv2.imread('8.png', cv2.IMREAD_COLOR)),
+    ('17', cv2.imread('17.png', cv2.IMREAD_COLOR)),
 ]
 
 def click(xs, ys):
