@@ -33,6 +33,11 @@ star_templates = [
     #('13', cv2.imread('13.png', cv2.IMREAD_COLOR)),
     #('14', cv2.imread('14.png', cv2.IMREAD_COLOR)),
     #('15', cv2.imread('15.png', cv2.IMREAD_COLOR)),
+
+    ('18', cv2.imread('18.png', cv2.IMREAD_COLOR)),  # фарм мячей
+    ('19', cv2.imread('19.png', cv2.IMREAD_COLOR)),
+    ('20', cv2.imread('20.png', cv2.IMREAD_COLOR)),
+    ('21', cv2.imread('21.png', cv2.IMREAD_COLOR)),
 ]
 
 star_templates_p = [
