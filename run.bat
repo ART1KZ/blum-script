@@ -6,27 +6,20 @@ echo Hi, this is a script for blum! The author of the script is https://funpay.c
 @echo.
 
 echo =================== Menu =====================================
-echo 1. Run script with freezes
-echo 2. Run script without freezes
-echo 3. Exit
+echo 1. Run script
+echo 2. Exit
 echo ==============================================================
 set /p choice=Enter a number (1-3): 
 
-if "%choice%"=="1" goto script1
-if "%choice%"=="2" goto script2
-if "%choice%"=="3" goto exit
+if "%choice%"=="1" goto script
+if "%choice%"=="2" goto exit
 echo Invalid choice
 goto menu
 
 
-:script1
+:script
 cd script
-python freezes.py
-goto menu
-
-:script2
-cd script
-python no-freezes.py
+python script.py
 goto menu
 
 :exit
