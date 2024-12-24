@@ -10,9 +10,11 @@ import tkinter as tk
 from tkinter import simpledialog
 import base64
 from colorama import Fore
+import random
+
 mouse = Controller()
 
-WIND = 0.2 # Сдвиг окна
+WIND = 0.2  # Сдвиг окна
 
 star_templates_10s = [
     ('6', cv2.imread('6.png', cv2.IMREAD_COLOR)),
@@ -21,90 +23,20 @@ star_templates_10s = [
     ('16', cv2.imread('16.png', cv2.IMREAD_COLOR)),
 ]
 
-star_templates = [
-    # ('1', cv2.imread('1.png', cv2.IMREAD_COLOR)),  # фарм цветов
-    # ('2', cv2.imread('2.png', cv2.IMREAD_COLOR)),
-    # ('3', cv2.imread('3.png', cv2.IMREAD_COLOR)),
-    
-    #('10', cv2.imread('10.png', cv2.IMREAD_COLOR)),  # фарм собак
-    #('11', cv2.imread('11.png', cv2.IMREAD_COLOR)),
-    
-    #('12', cv2.imread('12.png', cv2.IMREAD_COLOR)),  # фарм хеллоуин
-    #('13', cv2.imread('13.png', cv2.IMREAD_COLOR)),
-    #('14', cv2.imread('14.png', cv2.IMREAD_COLOR)),
-    #('15', cv2.imread('15.png', cv2.IMREAD_COLOR)),
-
-    # ('18', cv2.imread('18.png', cv2.IMREAD_COLOR)),  # фарм мячей
-    # ('19', cv2.imread('19.png', cv2.IMREAD_COLOR)),
-    # ('20', cv2.imread('20.png', cv2.IMREAD_COLOR)),
-    # ('21', cv2.imread('21.png', cv2.IMREAD_COLOR)),
-    
-    ('22', cv2.imread('22.png', cv2.IMREAD_COLOR)), # фарм рождество
-    ('23', cv2.imread('23.png', cv2.IMREAD_COLOR)),
-    ('24', cv2.imread('24.png', cv2.IMREAD_COLOR)),
-    ('25', cv2.imread('25.png', cv2.IMREAD_COLOR)),
-    ('26', cv2.imread('26.png', cv2.IMREAD_COLOR)),
-    ('27', cv2.imread('27.png', cv2.IMREAD_COLOR)),
-    ('28', cv2.imread('28.png', cv2.IMREAD_COLOR)),
-    ('29', cv2.imread('29.png', cv2.IMREAD_COLOR)),
-    ('30', cv2.imread('30.png', cv2.IMREAD_COLOR)),
-    ('31', cv2.imread('31.png', cv2.IMREAD_COLOR)),
-    ('32', cv2.imread('32.png', cv2.IMREAD_COLOR)),
-    ('33', cv2.imread('33.png', cv2.IMREAD_COLOR)),
-    ('34', cv2.imread('34.png', cv2.IMREAD_COLOR)),
-    ('35', cv2.imread('35.png', cv2.IMREAD_COLOR)),
-    ('36', cv2.imread('36.png', cv2.IMREAD_COLOR)),
-    ('37', cv2.imread('37.png', cv2.IMREAD_COLOR)),
-    ('38', cv2.imread('38.png', cv2.IMREAD_COLOR)),
-    ('39', cv2.imread('39.png', cv2.IMREAD_COLOR)),
-    ('40', cv2.imread('40.png', cv2.IMREAD_COLOR)),
-    ('41', cv2.imread('41.png', cv2.IMREAD_COLOR)),
-    ('42', cv2.imread('42.png', cv2.IMREAD_COLOR)),
-    ('43', cv2.imread('43.png', cv2.IMREAD_COLOR)),
-    ('44', cv2.imread('44.png', cv2.IMREAD_COLOR)),
-    ('45', cv2.imread('45.png', cv2.IMREAD_COLOR)),
-    ('46', cv2.imread('46.png', cv2.IMREAD_COLOR)),
-    ('47', cv2.imread('47.png', cv2.IMREAD_COLOR)),
-    ('48', cv2.imread('48.png', cv2.IMREAD_COLOR)),
-    ('49', cv2.imread('49.png', cv2.IMREAD_COLOR)),
-    ('50', cv2.imread('50.png', cv2.IMREAD_COLOR)),
-    ('51', cv2.imread('51.png', cv2.IMREAD_COLOR)),
-    ('52', cv2.imread('52.png', cv2.IMREAD_COLOR)),
-    ('53', cv2.imread('53.png', cv2.IMREAD_COLOR)),
-    ('54', cv2.imread('54.png', cv2.IMREAD_COLOR)),
-    ('55', cv2.imread('55.png', cv2.IMREAD_COLOR)),
-    ('56', cv2.imread('56.png', cv2.IMREAD_COLOR)),
-    ('57', cv2.imread('57.png', cv2.IMREAD_COLOR)),
-    ('58', cv2.imread('58.png', cv2.IMREAD_COLOR)),
-    ('59', cv2.imread('59.png', cv2.IMREAD_COLOR)),
-    ('60', cv2.imread('60.png', cv2.IMREAD_COLOR)),
-    ('61', cv2.imread('61.png', cv2.IMREAD_COLOR)),
-    ('62', cv2.imread('62.png', cv2.IMREAD_COLOR)),
-    ('63', cv2.imread('63.png', cv2.IMREAD_COLOR)),
-    ('64', cv2.imread('64.png', cv2.IMREAD_COLOR)),
-    ('65', cv2.imread('65.png', cv2.IMREAD_COLOR)),
-    ('66', cv2.imread('66.png', cv2.IMREAD_COLOR)),
-    ('67', cv2.imread('67.png', cv2.IMREAD_COLOR)),
-    ('68', cv2.imread('68.png', cv2.IMREAD_COLOR)),
-    ('69', cv2.imread('69.png', cv2.IMREAD_COLOR)),
-    ('70', cv2.imread('70.png', cv2.IMREAD_COLOR)),
-    ('71', cv2.imread('71.png', cv2.IMREAD_COLOR)),
-    ('72', cv2.imread('72.png', cv2.IMREAD_COLOR)),
-    ('73', cv2.imread('73.png', cv2.IMREAD_COLOR)),
-    ('74', cv2.imread('74.png', cv2.IMREAD_COLOR)),
-    ('75', cv2.imread('75.png', cv2.IMREAD_COLOR)),
-]
-
 star_templates_p = [
     ('8', cv2.imread('8.png', cv2.IMREAD_COLOR)),
-    ('17', cv2.imread('17.png', cv2.IMREAD_COLOR)),
+    ('10', cv2.imread('10.png', cv2.IMREAD_COLOR)),
+    ('11', cv2.imread('11.png', cv2.IMREAD_COLOR)),
+    ('12', cv2.imread('12.png', cv2.IMREAD_COLOR)),
+    ('16', cv2.imread('16.png', cv2.IMREAD_COLOR)),
+    ('18', cv2.imread('18.png', cv2.IMREAD_COLOR)),
+    ('19', cv2.imread('19.png', cv2.IMREAD_COLOR))
 ]
 
 def click(xs, ys):
     mouse.position = (xs, ys)
     mouse.press(Button.left)
     mouse.release(Button.left)
-    time.sleep(0.0001)
 
 def choose_window_gui():
     root = tk.Tk()
@@ -175,13 +107,24 @@ def process_template(template_data, screenshot, scale_factor, region_left, regio
         elif template_name == '9':
             click_on_screen(position, template_width, template_height, region_left, region_top)
 
-        elif template_name != '6':
-            click_on_screen(position, template_width, template_height, region_left, region_top)
         return template_name, position
     return template_name, None
 
+def color_range(r, g, b):
+    return ((r in range(90, 110) and g in range(125, 150) and b in range(85, 95)) or
+            (r in range(200, 255) and g in range(35, 65) and b in range(180, 205)) or
+            (r in range(50, 105) and g in range(110, 175) and b in range(5, 40)) or
+            (r in range(185, 255) and g in range(0, 2) and b in range(155, 200)) or
+            (r in range(90, 130) and g in range(165, 210) and b in range(20, 85)) or
+            (r in range(130, 180) and g in range(55, 75) and b in range(5, 20)) or
+            (r in range(190, 240) and g in range(10, 35) and b in range(100, 175)) or
+            (r in range(235, 255) and g in range(150, 185) and b in range(0, 15)) or
+            (r in range(85, 105) and g in range(135, 175) and b in range(15, 55)))
+
 window_name = "TelegramDesktop"
 check = gw.getWindowsWithTitle(window_name)
+encoded = b'0JDQstGC0L7RgCDRgdC60YDQuNC/0YLQsCBhcnR5azE4MDcgKGh0dHBzOi8vZnVucGF5LmNvbS91c2Vycy8zMzA1MzUzLykuINCf0LXRgNC10L/RgNC+0LTQsNC20LAg0YHQutGA0LjQv9GC0LAg0LfQsNC/0YDQtdGJ0LXQvdCwLg=='
+print(f"{Fore.LIGHTYELLOW_EX}{base64.b64decode(encoded).decode('utf-8')}")
 
 if not check:
     print(f"{Fore.LIGHTRED_EX}\nОкно {window_name} не найдено!\nПожалуйста, выберите другое окно.")
@@ -222,7 +165,6 @@ while True:
         int(telegram_window.height*(0.92-WIND))
     )
 
-
     if telegram_window != []:
         try:
             telegram_window.activate()
@@ -232,6 +174,7 @@ while True:
 
     if not paused and click_counts['6'] > 0:
         screenshot = grab_screen(window_rect)
+
         with concurrent.futures.ThreadPoolExecutor() as executor:
             futures = []
             current_time = time.time()
@@ -240,11 +183,18 @@ while True:
                 futures += [executor.submit(process_template, template_data, screenshot, 0.5, (telegram_window.left+int(telegram_window.width*0.05)), (telegram_window.top+int(telegram_window.height*WIND)), click_counts) for template_data in star_templates_10s]
                 last_check_time_10s = current_time
 
-
-            futures += [executor.submit(process_template, template_data, screenshot, 0.5, (telegram_window.left+int(telegram_window.width*0.05)), (telegram_window.top+int(telegram_window.height*WIND)), click_counts) for template_data in star_templates]
-
             for future in concurrent.futures.as_completed(futures):
                 template_name, position = future.result()
+
+        screenshot_pix = pyautogui.screenshot(region=window_rect)
+        width, height = screenshot_pix.size
+        for x in range(0, width, 20):
+            for y in range(0, height, 20):
+                r, g, b = screenshot_pix.getpixel((x, y))
+                if color_range(r, g, b):
+                    click(x + random.uniform(1, 2)+window_rect[0], y + random.uniform(1, 2)+window_rect[1])
+                    time.sleep(0.01)
+                    break
 
     if click_counts['6'] == 1:
         if not end_time:
