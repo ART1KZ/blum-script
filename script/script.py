@@ -18,7 +18,7 @@ star_templates_10s = [
     ('6', cv2.imread('6.png', cv2.IMREAD_COLOR)),
     ('7', cv2.imread('7.png', cv2.IMREAD_COLOR)),
     ('9', cv2.imread('9.png', cv2.IMREAD_COLOR)),
-    ('16', cv2.imread('16.png', cv2.IMREAD_COLOR)),
+    ('10', cv2.imread('10.png', cv2.IMREAD_COLOR)),
 ]
 
 star_templates = [
@@ -26,78 +26,31 @@ star_templates = [
     # ('2', cv2.imread('2.png', cv2.IMREAD_COLOR)),
     # ('3', cv2.imread('3.png', cv2.IMREAD_COLOR)),
     
-    #('10', cv2.imread('10.png', cv2.IMREAD_COLOR)),  # фарм собак
-    #('11', cv2.imread('11.png', cv2.IMREAD_COLOR)),
-    
-    #('12', cv2.imread('12.png', cv2.IMREAD_COLOR)),  # фарм хеллоуин
-    #('13', cv2.imread('13.png', cv2.IMREAD_COLOR)),
-    #('14', cv2.imread('14.png', cv2.IMREAD_COLOR)),
-    #('15', cv2.imread('15.png', cv2.IMREAD_COLOR)),
-
-    # ('18', cv2.imread('18.png', cv2.IMREAD_COLOR)),  # фарм мячей
-    # ('19', cv2.imread('19.png', cv2.IMREAD_COLOR)),
-    # ('20', cv2.imread('20.png', cv2.IMREAD_COLOR)),
-    # ('21', cv2.imread('21.png', cv2.IMREAD_COLOR)),
-    
-    ('22', cv2.imread('22.png', cv2.IMREAD_COLOR)), # фарм рождество
+    ('12', cv2.imread('12.png', cv2.IMREAD_COLOR)), # фарм рождество
+    ('13', cv2.imread('13.png', cv2.IMREAD_COLOR)),
+    ('14', cv2.imread('14.png', cv2.IMREAD_COLOR)),
+    ('15', cv2.imread('15.png', cv2.IMREAD_COLOR)),
+    ('16', cv2.imread('16.png', cv2.IMREAD_COLOR)),
+    ('17', cv2.imread('17.png', cv2.IMREAD_COLOR)),
+    ('18', cv2.imread('18.png', cv2.IMREAD_COLOR)),
+    ('19', cv2.imread('19.png', cv2.IMREAD_COLOR)),
+    ('20', cv2.imread('20.png', cv2.IMREAD_COLOR)),
+    ('21', cv2.imread('21.png', cv2.IMREAD_COLOR)),
+    ('22', cv2.imread('22.png', cv2.IMREAD_COLOR)),
     ('23', cv2.imread('23.png', cv2.IMREAD_COLOR)),
     ('24', cv2.imread('24.png', cv2.IMREAD_COLOR)),
     ('25', cv2.imread('25.png', cv2.IMREAD_COLOR)),
     ('26', cv2.imread('26.png', cv2.IMREAD_COLOR)),
     ('27', cv2.imread('27.png', cv2.IMREAD_COLOR)),
     ('28', cv2.imread('28.png', cv2.IMREAD_COLOR)),
-    ('29', cv2.imread('29.png', cv2.IMREAD_COLOR)),
-    ('30', cv2.imread('30.png', cv2.IMREAD_COLOR)),
-    ('31', cv2.imread('31.png', cv2.IMREAD_COLOR)),
-    ('32', cv2.imread('32.png', cv2.IMREAD_COLOR)),
-    ('33', cv2.imread('33.png', cv2.IMREAD_COLOR)),
-    ('34', cv2.imread('34.png', cv2.IMREAD_COLOR)),
-    ('35', cv2.imread('35.png', cv2.IMREAD_COLOR)),
-    ('36', cv2.imread('36.png', cv2.IMREAD_COLOR)),
-    ('37', cv2.imread('37.png', cv2.IMREAD_COLOR)),
-    ('38', cv2.imread('38.png', cv2.IMREAD_COLOR)),
-    ('39', cv2.imread('39.png', cv2.IMREAD_COLOR)),
-    ('40', cv2.imread('40.png', cv2.IMREAD_COLOR)),
-    ('41', cv2.imread('41.png', cv2.IMREAD_COLOR)),
-    ('42', cv2.imread('42.png', cv2.IMREAD_COLOR)),
-    ('43', cv2.imread('43.png', cv2.IMREAD_COLOR)),
-    ('44', cv2.imread('44.png', cv2.IMREAD_COLOR)),
-    ('45', cv2.imread('45.png', cv2.IMREAD_COLOR)),
-    ('46', cv2.imread('46.png', cv2.IMREAD_COLOR)),
-    ('47', cv2.imread('47.png', cv2.IMREAD_COLOR)),
-    ('48', cv2.imread('48.png', cv2.IMREAD_COLOR)),
-    ('49', cv2.imread('49.png', cv2.IMREAD_COLOR)),
-    ('50', cv2.imread('50.png', cv2.IMREAD_COLOR)),
-    ('51', cv2.imread('51.png', cv2.IMREAD_COLOR)),
-    ('52', cv2.imread('52.png', cv2.IMREAD_COLOR)),
-    ('53', cv2.imread('53.png', cv2.IMREAD_COLOR)),
-    ('54', cv2.imread('54.png', cv2.IMREAD_COLOR)),
-    ('55', cv2.imread('55.png', cv2.IMREAD_COLOR)),
-    ('56', cv2.imread('56.png', cv2.IMREAD_COLOR)),
-    ('57', cv2.imread('57.png', cv2.IMREAD_COLOR)),
-    ('58', cv2.imread('58.png', cv2.IMREAD_COLOR)),
-    ('59', cv2.imread('59.png', cv2.IMREAD_COLOR)),
-    ('60', cv2.imread('60.png', cv2.IMREAD_COLOR)),
-    ('61', cv2.imread('61.png', cv2.IMREAD_COLOR)),
-    ('62', cv2.imread('62.png', cv2.IMREAD_COLOR)),
-    ('63', cv2.imread('63.png', cv2.IMREAD_COLOR)),
-    ('64', cv2.imread('64.png', cv2.IMREAD_COLOR)),
-    ('65', cv2.imread('65.png', cv2.IMREAD_COLOR)),
-    ('66', cv2.imread('66.png', cv2.IMREAD_COLOR)),
-    ('67', cv2.imread('67.png', cv2.IMREAD_COLOR)),
-    ('68', cv2.imread('68.png', cv2.IMREAD_COLOR)),
-    ('69', cv2.imread('69.png', cv2.IMREAD_COLOR)),
-    ('70', cv2.imread('70.png', cv2.IMREAD_COLOR)),
-    ('71', cv2.imread('71.png', cv2.IMREAD_COLOR)),
-    ('72', cv2.imread('72.png', cv2.IMREAD_COLOR)),
-    ('73', cv2.imread('73.png', cv2.IMREAD_COLOR)),
-    ('74', cv2.imread('74.png', cv2.IMREAD_COLOR)),
-    ('75', cv2.imread('75.png', cv2.IMREAD_COLOR)),
+    # ('29', cv2.imread('29.png', cv2.IMREAD_COLOR)),
+    # ('30', cv2.imread('30.png', cv2.IMREAD_COLOR)),
+    # ('31', cv2.imread('31.png', cv2.IMREAD_COLOR)),
 ]
 
 star_templates_p = [
     ('8', cv2.imread('8.png', cv2.IMREAD_COLOR)),
-    ('17', cv2.imread('17.png', cv2.IMREAD_COLOR)),
+    ('11', cv2.imread('11.png', cv2.IMREAD_COLOR)),
 ]
 
 def click(xs, ys):
