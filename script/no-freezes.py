@@ -8,37 +8,29 @@ from pynput.mouse import Button, Controller
 import pygetwindow as gw
 import tkinter as tk
 from tkinter import simpledialog
+import base64
 from colorama import Fore
 mouse = Controller()
 
-
-def get_window(window):
-    windows = pyautogui.getWindowsWithTitle(window)
-    if windows:
-        window = windows[0]
-        region_left = window.left
-        region_top = window.top
-        region_width = window.width
-        region_height = window.height
-        return region_left, region_top, region_width, region_height
-    else:
-        raise Exception(f"{Fore.LIGHTRED_EX}Окно '{window}' не найдено.")
+WIND = 0.2 # Сдвиг окна
 
 star_templates_10s = [
     ('6', cv2.imread('6.png', cv2.IMREAD_COLOR)),
     ('7', cv2.imread('7.png', cv2.IMREAD_COLOR)),
+    ('9', cv2.imread('9.png', cv2.IMREAD_COLOR)),
+    ('11', cv2.imread('11.png', cv2.IMREAD_COLOR))
 ]
 
 star_templates = [
-    ('1', cv2.imread('1.png', cv2.IMREAD_COLOR)),
+    ('1', cv2.imread('1.png', cv2.IMREAD_COLOR)),  # фарм цветов
     ('2', cv2.imread('2.png', cv2.IMREAD_COLOR)),
     ('3', cv2.imread('3.png', cv2.IMREAD_COLOR)),
-    ('10', cv2.imread('10.png', cv2.IMREAD_COLOR)),
-    #('11', cv2.imread('11.png', cv2.IMREAD_COLOR)),
+    
 ]
 
 star_templates_p = [
-    ('8', cv2.imread('8.png', cv2.IMREAD_COLOR))
+    ('8', cv2.imread('8.png', cv2.IMREAD_COLOR)),
+    ('10', cv2.imread('10.png', cv2.IMREAD_COLOR)),
 ]
 
 def click(xs, ys):
@@ -98,10 +90,10 @@ def process_template(template_data, screenshot, scale_factor, region_left, regio
         if template_name == '6' and click_counts['6'] > 1:
             click_on_screen(position, template_width, template_height, region_left, region_top)
             click_counts['6'] -= 1
-            
+
         elif template_name == '7' and click_counts['6'] > 1:
-            center_x = telegram_window.left + telegram_window.width // 2
-            center_y = telegram_window.top + telegram_window.height // 2
+            center_x = (telegram_window.left+int(telegram_window.width*0.05)) + (telegram_window.width-int(telegram_window.width*0.12)) // 2
+            center_y = (telegram_window.top+int(telegram_window.height*WIND)) + (int(telegram_window.height*(0.92-WIND))) // 2
             mouse.position = (center_x, center_y)
             time.sleep(0.3)
             mouse.scroll(0, 2)
@@ -114,7 +106,7 @@ def process_template(template_data, screenshot, scale_factor, region_left, regio
                 click_counts['6'] -= 1
 
         elif template_name == '9':
-            click_on_screen(position, template_width, template_height, region_left, region_top)        
+            click_on_screen(position, template_width, template_height, region_left, region_top)
 
         elif template_name != '6':
             click_on_screen(position, template_width, template_height, region_left, region_top)
@@ -123,6 +115,8 @@ def process_template(template_data, screenshot, scale_factor, region_left, regio
 
 window_name = "TelegramDesktop"
 check = gw.getWindowsWithTitle(window_name)
+encoded = b'0JDQstGC0L7RgCDRgdC60YDQuNC/0YLQsCAtIGh0dHBzOi8vZnVucGF5LmNvbS91c2Vycy8zMzA1MzUzLyAoYXJ0eWsxODA3KS4g0J/QviDQstGB0LXQvCDQstC+0L/RgNC+0YHQsNC8INC/0LjRiNC40YLQtSDQsiDQu9C40YfQvdGL0LUg0YHQvtC+0LHRidC10L3QuNGPINC90LAg0YTQsNC90L/QtdC1LgpTY3JpcHQgYXV0aG9yIC0gaHR0cHM6Ly9mdW5wYXkuY29tL3VzZXJzLzMzMDUzNTMvIChhcnR5azE4MDcpLiBGb3IgcXVlc3Rpb25zIHdyaXRlIGluIHByaXZhdGUgbWVzc2FnZXMgb24gZnVucGF5Lg=='
+print(f"{Fore.LIGHTYELLOW_EX}{base64.b64decode(encoded).decode('utf-8')}")
 
 if not check:
     print(f"{Fore.LIGHTRED_EX}\nОкно {window_name} не найдено!\nПожалуйста, выберите другое окно.")
@@ -157,8 +151,12 @@ while True:
         time.sleep(0.2)
 
     window_rect = (
-        telegram_window.left, telegram_window.top, telegram_window.width, telegram_window.height
+        telegram_window.left+int(telegram_window.width*0.05),
+        telegram_window.top+int(telegram_window.height*WIND),
+        telegram_window.width-int(telegram_window.width*0.12),
+        int(telegram_window.height*(0.92-WIND))
     )
+
 
     if telegram_window != []:
         try:
@@ -174,9 +172,10 @@ while True:
             current_time = time.time()
 
             if current_time - last_check_time_10s >= 5:
-                futures += [executor.submit(process_template, template_data, screenshot, 0.5, telegram_window.left, telegram_window.top, click_counts) for template_data in star_templates_10s]
-                last_check_time_10s = current_time 
-            futures += [executor.submit(process_template, template_data, screenshot, 0.5, telegram_window.left, telegram_window.top, click_counts) for template_data in star_templates]
+                futures += [executor.submit(process_template, template_data, screenshot, 0.5, (telegram_window.left+int(telegram_window.width*0.05)), (telegram_window.top+int(telegram_window.height*WIND)), click_counts) for template_data in star_templates_10s]
+                last_check_time_10s = current_time
+
+            futures += [executor.submit(process_template, template_data, screenshot, 0.5, (telegram_window.left+int(telegram_window.width*0.05)), (telegram_window.top+int(telegram_window.height*WIND)), click_counts) for template_data in star_templates]
 
             for future in concurrent.futures.as_completed(futures):
                 template_name, position = future.result()
