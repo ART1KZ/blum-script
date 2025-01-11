@@ -18,6 +18,7 @@ star_templates_10s = [
     ('6', cv2.imread('6.png', cv2.IMREAD_COLOR)),
     ('7', cv2.imread('7.png', cv2.IMREAD_COLOR)),
     ('9', cv2.imread('9.png', cv2.IMREAD_COLOR)),
+<<<<<<< HEAD:script/freezes.py
     ('11', cv2.imread('11.png', cv2.IMREAD_COLOR))
 ]
 
@@ -32,11 +33,45 @@ star_templates = [
     ('2', cv2.imread('2.png', cv2.IMREAD_COLOR)),
     ('3', cv2.imread('3.png', cv2.IMREAD_COLOR)),
     
+=======
+    ('10', cv2.imread('10.png', cv2.IMREAD_COLOR)),
+]
+
+star_templates = [
+    # ('1', cv2.imread('1.png', cv2.IMREAD_COLOR)),  # фарм цветов
+    # ('2', cv2.imread('2.png', cv2.IMREAD_COLOR)),
+    # ('3', cv2.imread('3.png', cv2.IMREAD_COLOR)),
+    
+    ('12', cv2.imread('12.png', cv2.IMREAD_COLOR)), # фарм рождество
+    ('13', cv2.imread('13.png', cv2.IMREAD_COLOR)),
+    ('14', cv2.imread('14.png', cv2.IMREAD_COLOR)),
+    ('15', cv2.imread('15.png', cv2.IMREAD_COLOR)),
+    ('16', cv2.imread('16.png', cv2.IMREAD_COLOR)),
+    ('17', cv2.imread('17.png', cv2.IMREAD_COLOR)),
+    ('18', cv2.imread('18.png', cv2.IMREAD_COLOR)),
+    ('19', cv2.imread('19.png', cv2.IMREAD_COLOR)),
+    ('20', cv2.imread('20.png', cv2.IMREAD_COLOR)),
+    ('21', cv2.imread('21.png', cv2.IMREAD_COLOR)),
+    ('22', cv2.imread('22.png', cv2.IMREAD_COLOR)),
+    ('23', cv2.imread('23.png', cv2.IMREAD_COLOR)),
+    ('24', cv2.imread('24.png', cv2.IMREAD_COLOR)),
+    ('25', cv2.imread('25.png', cv2.IMREAD_COLOR)),
+    ('26', cv2.imread('26.png', cv2.IMREAD_COLOR)),
+    ('27', cv2.imread('27.png', cv2.IMREAD_COLOR)),
+    ('28', cv2.imread('28.png', cv2.IMREAD_COLOR)),
+    # ('29', cv2.imread('29.png', cv2.IMREAD_COLOR)),
+    # ('30', cv2.imread('30.png', cv2.IMREAD_COLOR)),
+    # ('31', cv2.imread('31.png', cv2.IMREAD_COLOR)),
+>>>>>>> b767d33c979e18e1c6078af84d8573506628926f:script/script.py
 ]
 
 star_templates_p = [
     ('8', cv2.imread('8.png', cv2.IMREAD_COLOR)),
+<<<<<<< HEAD:script/freezes.py
     ('10', cv2.imread('10.png', cv2.IMREAD_COLOR)),
+=======
+    ('11', cv2.imread('11.png', cv2.IMREAD_COLOR)),
+>>>>>>> b767d33c979e18e1c6078af84d8573506628926f:script/script.py
 ]
 
 def click(xs, ys):
@@ -181,10 +216,13 @@ while True:
                 futures += [executor.submit(process_template, template_data, screenshot, 0.5, (telegram_window.left+int(telegram_window.width*0.05)), (telegram_window.top+int(telegram_window.height*WIND)), click_counts) for template_data in star_templates_10s]
                 last_check_time_10s = current_time
 
+<<<<<<< HEAD:script/freezes.py
             # Удалить эти три строки, если не нужна заморозка и вверху скрипта удалить
             if current_time - last_check_time_5s >= 1:
                 futures += [executor.submit(process_template, template_data, screenshot, 0.5, (telegram_window.left+int(telegram_window.width*0.05)), (telegram_window.top+int(telegram_window.height*WIND)), click_counts) for template_data in star_templates_5s]
                 last_check_time_5s = current_time
+=======
+>>>>>>> b767d33c979e18e1c6078af84d8573506628926f:script/script.py
 
             futures += [executor.submit(process_template, template_data, screenshot, 0.5, (telegram_window.left+int(telegram_window.width*0.05)), (telegram_window.top+int(telegram_window.height*WIND)), click_counts) for template_data in star_templates]
 
