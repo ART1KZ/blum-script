@@ -10,7 +10,7 @@ echo 1. Run script without freezes
 echo 2. Run script with freezes
 echo 3. Exit
 echo ==============================================================
-set /p choice=Enter a number (1-2): 
+set /p choice=Enter a number (1-3): 
 
 if "%choice%"=="1" goto no-freezes
 if "%choice%"=="2" goto freezes
