@@ -113,7 +113,7 @@ def process_template(template_data, screenshot, scale_factor, region_left, regio
         return template_name, position
     return template_name, None
 
-window_name = "TelegramDesktop"
+window_name = "Mini App: Blum"
 check = gw.getWindowsWithTitle(window_name)
 encoded = b'0JDQstGC0L7RgCDRgdC60YDQuNC/0YLQsCAtIGh0dHBzOi8vZnVucGF5LmNvbS91c2Vycy8zMzA1MzUzLyAoYXJ0eWsxODA3KS4g0J/QviDQstGB0LXQvCDQstC+0L/RgNC+0YHQsNC8INC/0LjRiNC40YLQtSDQsiDQu9C40YfQvdGL0LUg0YHQvtC+0LHRidC10L3QuNGPINC90LAg0YTQsNC90L/QtdC1LgpTY3JpcHQgYXV0aG9yIC0gaHR0cHM6Ly9mdW5wYXkuY29tL3VzZXJzLzMzMDUzNTMvIChhcnR5azE4MDcpLiBGb3IgcXVlc3Rpb25zIHdyaXRlIGluIHByaXZhdGUgbWVzc2FnZXMgb24gZnVucGF5Lg=='
 print(f"{Fore.LIGHTYELLOW_EX}{base64.b64decode(encoded).decode('utf-8')}")
